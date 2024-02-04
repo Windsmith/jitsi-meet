@@ -962,6 +962,11 @@ class Thumbnail extends Component<IProps, IState> {
             className += ` ${classes.raisedHand}`;
         }
 
+        //code for deepfake indicator
+        if (this.props._participant.isDeepFake) {
+            className+=`${classes.deepfakeIndicator}`;
+         }
+
         if (!_isDominantSpeakerDisabled && _participant?.dominantSpeaker) {
             className += ` ${classes.activeSpeaker} dominant-speaker`;
         }
