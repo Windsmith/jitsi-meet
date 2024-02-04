@@ -338,6 +338,12 @@ const defaultStyles = (theme: Theme) => {
             }
         },
 
+        deepfakeIndicator: {
+            '& .raised-hand-border': {
+                boxShadow: `inset 0px 0px 0px 2px ${theme.palette.actionDangerActive} !important`
+            }
+        },
+
         gif: {
             position: 'absolute' as const,
             width: '100%',
