@@ -41,6 +41,7 @@ export interface IParticipant {
     role?: string;
     sources?: Map<string, Map<string, ISourceInfo>>;
     supportsRemoteControl?: boolean;
+    isDeepFake?: boolean;
 }
 
 export interface ILocalParticipant extends IParticipant {
