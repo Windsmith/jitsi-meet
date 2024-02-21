@@ -7,6 +7,9 @@ class AwarenessPage extends React.Component {
                 <h1>
                     Hello world!
                 </h1>
+                <a href={'/'}>
+                    Go back home.
+                </a>
             </div>
         )
     }

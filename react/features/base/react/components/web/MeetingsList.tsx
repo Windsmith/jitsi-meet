@@ -106,7 +106,9 @@ class MeetingsList extends Component<IProps> {
      * @returns {React.ReactNode}
      */
     render() {
-        const { listEmptyComponent, meetings } = this.props;
+        let { listEmptyComponent, meetings } = this.props;
+
+        meetings = meetings.filter(meeting => meeting.title !== 'awareness-page')
 
         /**
          * If there are no recent meetings we don't want to display anything.

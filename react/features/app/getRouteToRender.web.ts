@@ -13,6 +13,7 @@ import { getDeepLinkingPage } from '../deep-linking/functions';
 import UnsupportedDesktopBrowser from '../unsupported-browser/components/UnsupportedDesktopBrowser';
 import BlankPage from '../welcome/components/BlankPage.web';
 import WelcomePage from '../welcome/components/WelcomePage.web';
+import AwarenessPage from '../awareness-page/components/awarenessPage'
 import { getCustomLandingPageURL, isWelcomePageEnabled } from '../welcome/functions';
 
 import { IReduxState } from './types';
@@ -40,6 +41,10 @@ export function _getRouteToRender(stateful: IStateful) {
  */
 function _getWebConferenceRoute(state: IReduxState) {
     const room = state['features/base/conference'].room;
+
+    if(room && room.includes('awareness-page')) {
+        return
+    }
 
     if (!isRoomValid(room)) {
         return;
@@ -111,6 +116,12 @@ function _getWebConferenceRoute(state: IReduxState) {
  */
 function _getWebWelcomePageRoute(state: IReduxState) {
     const route = _getEmptyRoute();
+    const url = window.location.href
+
+    if(url.includes('awareness-page')) {
+        route.component = AwarenessPage
+        return Promise.resolve(route);
+    }
 
     if (isWelcomePageEnabled(state)) {
         if (isSupportedBrowser()) {
