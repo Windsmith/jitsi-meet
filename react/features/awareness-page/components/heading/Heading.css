@@ -1,0 +1,27 @@
+.heading{
+    width: 100%;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    gap: 300px;
+    padding-left: 100px;
+}
+a{
+    color: #FFFF;
+}
+.goHome{
+    background-color: #0074e0;
+    width: 95px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+}
+
+p{
+    font-size: 28px;
+    color: black;
+    text-align: center;
+    padding-top: 25px;
+}

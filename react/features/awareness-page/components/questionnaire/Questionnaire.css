@@ -1,0 +1,21 @@
+.container{
+    width: 100%;
+    height: 170px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+   
+}
+
+.checkBox1, .checkBox2{
+    width: 200px;
+    height: 30px;
+    border: 1px solid purple;
+    padding: 10px;
+    margin: 20px;
+    display: flex;
+    gap:15px;
+    font-size: 18px;
+    border-radius: 6px;
+    color:black;
+}
