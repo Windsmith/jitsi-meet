@@ -3,7 +3,7 @@ import './Questionnaire.css'
 
 function Questionnaire(isdeepfake){
     return(
-        <div className="container">
+        <div className="containerQ">
             <div className="checkBox1">
                 <input type="radio" id="isDeepFake" name="boolean"/>
                 <label>It is a deepfake</label>

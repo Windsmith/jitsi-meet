@@ -6,7 +6,7 @@ function NavBar() {
 
         <>
             <nav>
-                <h1>Jitsi Meet</h1>
+                <h1 className='heading1'>Jitsi Meet</h1>
             </nav>
         </>
 

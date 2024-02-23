@@ -2,13 +2,13 @@ import React from "react";
 import './Heading.css'
 function Heading() {
     return (
-        <div className="heading">
+        <div className="headingForGame">
             <div className="goHome">
-            <a href={'/'}>
+            <a className="tag"href={'/'}>
                 Go back home
             </a>
             </div>
-            <p>Stay Secure: Deepfake Audio Awareness Quiz</p>
+            <p className="paragraph">Stay Secure: Deepfake Audio Awareness Quiz</p>
         </div>
     )
 }
