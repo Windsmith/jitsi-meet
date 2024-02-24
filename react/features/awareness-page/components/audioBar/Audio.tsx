@@ -4,7 +4,7 @@ function Audio({audio}){
     return(
         <div className="audio">
             <audio controls>
-            <source src={audio.default} type="audio/mp4" />
+            <source src={audio.default} type="audio/m4a" />
             </audio>
         </div>
     )

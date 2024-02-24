@@ -4,7 +4,7 @@ function Heading() {
     return (
         <div className="headingForGame">
             <div className="goHome">
-            <a className="tag"href={'/'}>
+            <a className="tag" href={'/'}>
                 Go back home
             </a>
             </div>
