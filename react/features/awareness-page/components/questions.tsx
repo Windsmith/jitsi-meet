@@ -10,7 +10,9 @@ export const quiz = {
             choices: ['Yes, it is a deepfake.', 'No, it is not a deepfake.'],
             type: 'MCQs',
             correctAnswer: 'Yes, it is a deepfake.',
-            audioSrc: '../Audio/sampleAudio.mp3'
+            // Audio needs to come from this specific dir.
+                // Audio sources specified below won't work.
+            audioSrc: '../../../../sounds/e2eeOff.mp3'
         },
         {
             choices: ['Yes, it is a deepfake.', 'No, it is not a deepfake.'],

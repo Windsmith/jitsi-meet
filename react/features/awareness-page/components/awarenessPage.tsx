@@ -50,47 +50,61 @@ const AwarenessPage = () => {
     const addLeadingZero = (number) => (number > 9 ? number : `0${number}`);
 
     return (
-        <div className="background-stuff">
-            <div className="quiz-container">
-                {!showResult ? (
-                    <div>
-                        <div>
-                            <span className="active-question-no">{addLeadingZero(activeQuestion + 1)}</span>
-                            <span className="total-question">/{addLeadingZero(questions.length)}</span>
-                        </div>
-                        {/*Cycles through next audio.*/}
-                        <ReactAudioPlayer src={audioSrc} autoPlay controls />
-                        <ul>
-                            {choices.map((answer, index) => (
-                                <li
-                                    onClick={() => onAnswerSelected(answer, index)}
-                                    key={answer}
-                                    className={selectedAnswerIndex === index ? 'selected-answer' : null}
-                                >
-                                    {answer}
-                                </li>
-                            ))}
-                        </ul>
-                        <div className="flex-right">
-                            <button onClick={onClickNext} disabled={selectedAnswerIndex === null}>
-                                {activeQuestion === questions.length - 1 ? 'Finish' : 'Next'}
-                            </button>
-                        </div>
-                    </div>
-                ) : (
-                    <div className="result">
-                        <h3>Result</h3>
-                        <p>Total Question: <span>{questions.length}</span></p>
-                        <p>Total Score:<span> {result.score}</span></p>
-                        <p>Correct Answers:<span> {result.correctAnswers}</span></p>
-                        <p>Wrong Answers:<span> {result.wrongAnswers}</span></p>
-                        <a href={'/'}>Go back to homepage.</a>
-                        <br/>
-                        <a href={'/awareness-page'}>or try again!</a>
-                    </div>
-                )}
+        <>
+            <div className="banner">
+                <a href="/"><img src="../../../../images/watermark.svg" alt="jitsi-logo"/></a>
+                <p>Test your knowledge and awareness against the rising tide of deep fakes.</p>
             </div>
-        </div>
+            <div className="background-stuff">
+                <div className="quiz-container">
+                    {!showResult ? (
+                        <div>
+                            <div>
+                                <span
+                                    className="active-question-no">{addLeadingZero(activeQuestion + 1)}</span>
+                                <span
+                                    className="total-question">/{addLeadingZero(questions.length)}</span>
+                            </div>
+                            {/*Cycles through next audio.*/}
+                            <ReactAudioPlayer src={audioSrc} autoPlay controls/>
+                            <ul>
+                                {choices.map((answer, index) => (
+                                    <li
+                                        onClick={() => onAnswerSelected(answer, index)}
+                                        key={answer}
+                                        className={selectedAnswerIndex === index ? 'selected-answer' : null}
+                                    >
+                                        {answer}
+                                    </li>
+                                ))}
+                            </ul>
+                            <div className="flex-right">
+                                <button onClick={onClickNext}
+                                        disabled={selectedAnswerIndex === null}>
+                                    {activeQuestion === questions.length - 1 ? 'Finish' : 'Next'}
+                                </button>
+                            </div>
+                        </div>
+                    ) : (
+                        <div className="result">
+                            <h3>Result</h3>
+                            <p>Total Question: <span>{questions.length}</span>
+                            </p>
+                            <p>Total Score:<span> {result.score}</span></p>
+                            <p>Correct
+                                Answers:<span> {result.correctAnswers}</span>
+                            </p>
+                            <p>Wrong Answers:<span> {result.wrongAnswers}</span>
+                            </p>
+                            <p>Deepfake audios sound robotic and unnatural.</p>
+                            <a className="awareness-page-href" href={'/'}>Go back to homepage</a>
+                            <br/>
+                            <a className="awareness-page-href" href={'/awareness-page'}>or try again!</a>
+                        </div>
+                    )}
+                </div>
+            </div>
+        </>
     );
 };
 
