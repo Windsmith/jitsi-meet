@@ -15,6 +15,7 @@ import { SETTINGS_TABS } from '../../settings/constants';
 import { AbstractWelcomePage, IProps, _mapStateToProps } from './AbstractWelcomePage';
 import Tabs from './Tabs';
 
+
 /**
  * The pattern used to validate room name.
  *

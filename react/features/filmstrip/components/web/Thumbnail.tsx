@@ -63,6 +63,9 @@ import ThumbnailAudioIndicator from './ThumbnailAudioIndicator';
 import ThumbnailBottomIndicators from './ThumbnailBottomIndicators';
 import ThumbnailTopIndicators from './ThumbnailTopIndicators';
 import VirtualScreenshareParticipant from './VirtualScreenshareParticipant';
+import { truncate } from 'lodash';
+import ToastIndicator from '../../../../../jitsi-meet/react/features/conference/components/web/ToastIndicator';
+
 
 /**
  * The type of the React {@code Component} state of {@link Thumbnail}.
@@ -331,15 +334,15 @@ const defaultStyles = (theme: Theme) => {
                 boxShadow: `inset 0px 0px 0px 3px ${theme.palette.action01Hover} !important`
             }
         },
-
+        
         raisedHand: {
             '& .raised-hand-border': {
-                boxShadow: `inset 0px 0px 0px 2px ${theme.palette.warning02} !important`
+                boxShadow: `inset 0px 0px 0px 2px ${theme.palette.actionDangerActive} !important`
             }
         },
 
         deepfakeIndicator: {
-            '& .raised-hand-border': {
+            '& .deepfake-indicator-border': {
                 boxShadow: `inset 0px 0px 0px 2px ${theme.palette.actionDangerActive} !important`
             }
         },
@@ -959,13 +962,14 @@ class Thumbnail extends Component<IProps, IState> {
         className += ` ${DISPLAY_MODE_TO_CLASS_NAME[displayMode]}`;
 
         if (_raisedHand) {
-            className += ` ${classes.raisedHand}`;
+           className += ` ${classes.raisedHand}`;
         }
 
         //code for deepfake indicator
-        if (this.props._participant.isDeepFake) {
+        /*if (this.props._participant.isDeepFake) {
             className+=`${classes.deepfakeIndicator}`;
-         }
+         }*/
+
 
         if (!_isDominantSpeakerDisabled && _participant?.dominantSpeaker) {
             className += ` ${classes.activeSpeaker} dominant-speaker`;
@@ -1211,24 +1215,25 @@ class Thumbnail extends Component<IProps, IState> {
             const { _videoTrack, _isMobile, classes, _thumbnailType } = this.props;
 
             return (
-                <VirtualScreenshareParticipant
-                    classes = { classes }
-                    containerClassName = { this._getContainerClassName() }
-                    isHovered = { isHovered }
-                    isLocal = { isLocalScreenshareParticipant(_participant) }
-                    isMobile = { _isMobile }
-                    onClick = { this._onClick }
-                    onMouseEnter = { this._onMouseEnter }
-                    onMouseLeave = { this._onMouseLeave }
-                    onMouseMove = { this._onMouseMove }
-                    onTouchEnd = { this._onTouchEnd }
-                    onTouchMove = { this._onTouchMove }
-                    onTouchStart = { this._onTouchStart }
-                    participantId = { _participant.id }
-                    shouldDisplayTintBackground = { _shouldDisplayTintBackground }
-                    styles = { this._getStyles() }
-                    thumbnailType = { _thumbnailType }
-                    videoTrack = { _videoTrack } />
+                <><VirtualScreenshareParticipant
+                    classes={classes}
+                    containerClassName={this._getContainerClassName()}
+                    isHovered={isHovered}
+                    isLocal={isLocalScreenshareParticipant(_participant)}
+                    isMobile={_isMobile}
+                    onClick={this._onClick}
+                    onMouseEnter={this._onMouseEnter}
+                    onMouseLeave={this._onMouseLeave}
+                    onMouseMove={this._onMouseMove}
+                    onTouchEnd={this._onTouchEnd}
+                    onTouchMove={this._onTouchMove}
+                    onTouchStart={this._onTouchStart}
+                    participantId={_participant.id}
+                    shouldDisplayTintBackground={_shouldDisplayTintBackground}
+                    styles={this._getStyles()}
+                    thumbnailType={_thumbnailType}
+                    videoTrack={_videoTrack} />
+                    </>
             );
         }
 

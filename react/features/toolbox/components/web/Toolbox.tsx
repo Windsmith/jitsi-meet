@@ -40,6 +40,7 @@ import { LeaveConferenceButton } from './LeaveConferenceButton';
 import OverflowMenuButton from './OverflowMenuButton';
 import Separator from './Separator';
 
+import ToastIndicator from '../../../../../jitsi-meet/react/features/conference/components/web/ToastIndicator';
 /**
  * The type of the React {@code Component} props of {@link Toolbox}.
  */
@@ -386,7 +387,6 @@ const Toolbox = ({
                                 { ...rest }
                                 buttonKey = { key }
                                 key = { key } />))}
-
                         {Boolean(overflowMenuButtons.length) && (
                             <OverflowMenuButton
                                 ariaControls = 'overflow-menu'
@@ -436,6 +436,7 @@ const Toolbox = ({
                                         hidden = { false }
                                         inDrawer = { _overflowDrawer }
                                         onKeyDown = { onEscKey }>
+
                                         <EndConferenceButton
                                             buttonKey = 'end-meeting'
                                             notifyMode = { getButtonNotifyMode(
@@ -447,12 +448,14 @@ const Toolbox = ({
                                             notifyMode = { getButtonNotifyMode('hangup', _buttonsWithNotifyClick) } />
                                     </ContextMenu>
                                 </HangupMenuButton>
-                                : <HangupButton
-                                    buttonKey = 'hangup'
-                                    customClass = 'hangup-button'
-                                    key = 'hangup-button'
-                                    notifyMode = { getButtonNotifyMode('hangup', _buttonsWithNotifyClick) }
-                                    visible = { isToolbarButtonEnabled('hangup', _toolbarButtons) } />
+                                : <>
+                                <ToastIndicator />
+                                <HangupButton
+                                    buttonKey='hangup'
+                                    customClass='hangup-button'
+                                    key='hangup-button'
+                                    notifyMode={getButtonNotifyMode('hangup', _buttonsWithNotifyClick)}
+                                    visible={isToolbarButtonEnabled('hangup', _toolbarButtons)} /></>
                         )}
                     </div>
                 </div>
