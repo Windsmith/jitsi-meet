@@ -40,7 +40,8 @@ import { LeaveConferenceButton } from './LeaveConferenceButton';
 import OverflowMenuButton from './OverflowMenuButton';
 import Separator from './Separator';
 
-import ToastIndicator from '../../../../../jitsi-meet/react/features/conference/components/web/ToastIndicator';
+import ToastIndicator from '../../../conference/components/web/ToastIndicator'
+
 /**
  * The type of the React {@code Component} props of {@link Toolbox}.
  */
