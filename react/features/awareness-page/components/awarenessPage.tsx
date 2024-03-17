@@ -3,8 +3,32 @@ import { useState } from 'react'
 import { quiz } from './questions'
 import './awarenessPage.css'
 import ReactAudioPlayer from 'react-audio-player';
+import FlashHints from './flashComponent';
+import Overview from './overview';
 
 const AwarenessPage = () => {
+    const [stage, setStage] = useState('overview');
+
+    const handleStartQuiz = () => {
+      setStage('flashHints');
+    };
+  
+    const handleFlashHintsComplete = () => {
+      setStage('quiz');
+    };
+  
+    return (
+        <>
+            <div>
+                {stage === 'overview' && <Overview onStartQuiz={handleStartQuiz} />}
+                {stage === 'flashHints' && <FlashHints duration={20000} onComplete={handleFlashHintsComplete} />}
+                {stage === 'quiz' && <Quiz />}
+            </div>
+        </>
+    );
+}
+
+const Quiz = () => {
     const [activeQuestion, setActiveQuestion] = useState(0);
     const [selectedAnswer, setSelectedAnswer] = useState('');
     const [showResult, setShowResult] = useState(false);
@@ -66,7 +90,7 @@ const AwarenessPage = () => {
                                     className="total-question">/{addLeadingZero(questions.length)}</span>
                             </div>
                             {/*Cycles through next audio.*/}
-                            <ReactAudioPlayer src={audioSrc} autoPlay controls/>
+                            <ReactAudioPlayer src={audioSrc} controls/>
                             <ul>
                                 {choices.map((answer, index) => (
                                     <li
