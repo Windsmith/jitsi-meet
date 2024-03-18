@@ -253,7 +253,8 @@ function getDevServerConfig() {
         server: process.env.CODESPACES ? 'http' : 'https',
         static: {
             directory: process.cwd()
-        }
+        },
+        allowedHosts: 'all'
     };
 }
 
