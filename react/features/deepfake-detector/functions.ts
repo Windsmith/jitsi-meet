@@ -8,11 +8,11 @@ import '../../../react-toastify/ReactToastify.css';
 export function checkAudioDeepfake(audioTrack?: ITrack, username?: string) {
     console.log(audioTrack?.jitsiTrack.stream)
 
-    const recorder = new MediaRecorder(audioTrack?.jitsiTrack.stream, {mimeType: "audio/ogg"});
+    const recorder = new MediaRecorder(audioTrack?.jitsiTrack.stream, {mimeType: "audio/webm"});
     
     let data;
     recorder.addEventListener('dataavailable', async (e) => {
-        let file = new File([e.data as BlobPart], 'test.ogg', {type: "audio/ogg"})
+        //let file = new File([e.data as BlobPart], 'test.ogg', {type: "audio/ogg"})
         
         /*
         let a = document.createElement("a");
@@ -60,7 +60,7 @@ export function checkAudioDeepfake(audioTrack?: ITrack, username?: string) {
 
         console.log(data)
 
-        const response = await fetch('http://127.0.0.1:8000', {
+        const response = await fetch('https://5b7a-2a00-f29-2b0-5e2a-8a6c-4a60-5751-6625.ngrok-free.app', {
             method: "POST", // *GET, POST, PUT, DELETE, etc.
             mode: "cors", // no-cors, *cors, same-origin
             //cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
