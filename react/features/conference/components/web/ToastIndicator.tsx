@@ -15,3 +15,8 @@ export default function Toast(){
     </div>
   );
 }
+
+export const notify = (username?: string) => toast(`Warning: Possible deepfake detected. Deepfake might be user named ${username}. Stay vigilant.`, {
+  position: 'top-center',
+  theme: 'dark'
+});

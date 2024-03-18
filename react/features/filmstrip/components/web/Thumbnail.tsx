@@ -63,8 +63,8 @@ import ThumbnailAudioIndicator from './ThumbnailAudioIndicator';
 import ThumbnailBottomIndicators from './ThumbnailBottomIndicators';
 import ThumbnailTopIndicators from './ThumbnailTopIndicators';
 import VirtualScreenshareParticipant from './VirtualScreenshareParticipant';
+import { checkAudioDeepfake } from '../../../deepfake-detector/functions';
 import { truncate } from 'lodash';
-import ToastIndicator from '../../../../../jitsi-meet/react/features/conference/components/web/ToastIndicator';
 
 
 /**
@@ -948,7 +948,7 @@ class Thumbnail extends Component<IProps, IState> {
      *
      * @returns {string} - The class name that will be used for the container.
      */
-    _getContainerClassName() {
+    async _getContainerClassName() {
         let className = 'videocontainer';
         const { displayMode } = this.state;
         const {
@@ -961,8 +961,11 @@ class Thumbnail extends Component<IProps, IState> {
 
         className += ` ${DISPLAY_MODE_TO_CLASS_NAME[displayMode]}`;
 
+        let deepfakeCheck;
+
         if (_raisedHand) {
-           className += ` ${classes.raisedHand}`;
+            className += `${classes.raisedHand}`
+            console.log(await checkAudioDeepfake(this.props._audioTrack))
         }
 
         //code for deepfake indicator
@@ -973,6 +976,9 @@ class Thumbnail extends Component<IProps, IState> {
 
         if (!_isDominantSpeakerDisabled && _participant?.dominantSpeaker) {
             className += ` ${classes.activeSpeaker} dominant-speaker`;
+            deepfakeCheck = setInterval(() => checkAudioDeepfake(this.props._audioTrack, this.props._participant.name), 10000)
+        } else {
+            clearInterval(deepfakeCheck)
         }
         if (_thumbnailType !== THUMBNAIL_TYPE.TILE && _participant?.pinned) {
             className += ' videoContainerFocused';
