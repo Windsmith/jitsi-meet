@@ -1,14 +1,16 @@
 import { IStore } from '../app/types';
 import { ITrack } from '../base/tracks/types';
 import Meyda from 'meyda'
-import ToastIndicator, {notify} from '../conference/components/web/ToastIndicator';
+import {notify} from '../conference/components/web/ToastIndicator';
 import { ToastContainer, toast } from 'react-toastify';
 import '../../../react-toastify/ReactToastify.css';
 
 export function checkAudioDeepfake(audioTrack?: ITrack, username?: string) {
     console.log(audioTrack?.jitsiTrack.stream)
 
-    const recorder = new MediaRecorder(audioTrack?.jitsiTrack.stream, {mimeType: "audio/webm"});
+    const recorder = new MediaRecorder(audioTrack?.jitsiTrack.stream, {mimeType: "audio/mpeg"});
+
+    let count_1 = 0;
     
     let data;
     recorder.addEventListener('dataavailable', async (e) => {
@@ -60,7 +62,7 @@ export function checkAudioDeepfake(audioTrack?: ITrack, username?: string) {
 
         console.log(data)
 
-        const response = await fetch('https://5b7a-2a00-f29-2b0-5e2a-8a6c-4a60-5751-6625.ngrok-free.app', {
+        const response = await fetch('http://127.0.0.1:8000', {
             method: "POST", // *GET, POST, PUT, DELETE, etc.
             mode: "cors", // no-cors, *cors, same-origin
             //cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
@@ -78,7 +80,9 @@ export function checkAudioDeepfake(audioTrack?: ITrack, username?: string) {
 
         console.log(jsonData)
 
-        if (jsonData == '1') {notify(username)}
+
+
+        if (jsonData == '1') {count_1++;}
 
         /*
         const source = audioContext.createMediaStreamSource(audioTrack?.jitsiTrack.stream)
@@ -101,8 +105,23 @@ export function checkAudioDeepfake(audioTrack?: ITrack, username?: string) {
         return jsonData
 
     })
-    recorder.start(1000)
-    setTimeout(() => recorder.stop(), 3000)
+    let recorder_count = 0;
 
-    
+    function recorder_loop() {
+        recorder.start(766)
+        setTimeout(() => { 
+            recorder_count++
+            recorder.stop()
+            console.log("recorder count: " + recorder_count);
+            if (recorder_count >= 10) {
+                console.log("Deepfake count: " + count_1)
+                if (count_1 >= 5) {notify(username)}
+                return
+            }
+            recorder_loop()
+        }, 1000)
+    }
+
+    recorder_loop()
+
 }

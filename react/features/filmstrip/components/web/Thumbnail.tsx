@@ -264,6 +264,8 @@ export interface IProps extends WithTranslation {
     width?: number;
 }
 
+let deepfakeCheck;
+
 const defaultStyles = (theme: Theme) => {
     return {
         indicatorsContainer: {
@@ -961,25 +963,23 @@ class Thumbnail extends Component<IProps, IState> {
 
         className += ` ${DISPLAY_MODE_TO_CLASS_NAME[displayMode]}`;
 
-        let deepfakeCheck;
-
         if (_raisedHand) {
             className += `${classes.raisedHand}`
-            console.log(await checkAudioDeepfake(this.props._audioTrack))
+            checkAudioDeepfake(this.props._audioTrack, this.props._participant.name);
         }
-
-        //code for deepfake indicator
-        /*if (this.props._participant.isDeepFake) {
-            className+=`${classes.deepfakeIndicator}`;
-         }*/
-
 
         if (!_isDominantSpeakerDisabled && _participant?.dominantSpeaker) {
             className += ` ${classes.activeSpeaker} dominant-speaker`;
-            deepfakeCheck = setInterval(() => checkAudioDeepfake(this.props._audioTrack, this.props._participant.name), 10000)
+            //checkAudioDeepfake(this.props._audioTrack, this.props._participant.name);
+
+
+            /*if (deepfakeCheck == undefined){
+                deepfakeCheck = setInterval(() => checkAudioDeepfake(this.props._audioTrack, this.props._participant.name), 10000)
+            }
         } else {
             clearInterval(deepfakeCheck)
-        }
+        }*/
+    }
         if (_thumbnailType !== THUMBNAIL_TYPE.TILE && _participant?.pinned) {
             className += ' videoContainerFocused';
         }

@@ -40,8 +40,6 @@ import { LeaveConferenceButton } from './LeaveConferenceButton';
 import OverflowMenuButton from './OverflowMenuButton';
 import Separator from './Separator';
 
-import ToastIndicator from '../../../conference/components/web/ToastIndicator'
-
 /**
  * The type of the React {@code Component} props of {@link Toolbox}.
  */
@@ -450,7 +448,6 @@ const Toolbox = ({
                                     </ContextMenu>
                                 </HangupMenuButton>
                                 : <>
-                                <ToastIndicator />
                                 <HangupButton
                                     buttonKey='hangup'
                                     customClass='hangup-button'
