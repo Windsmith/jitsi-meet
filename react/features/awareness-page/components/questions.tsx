@@ -12,31 +12,31 @@ export const quiz = {
             correctAnswer: 'Yes, it is a deepfake.',
             // Audio needs to come from this specific dir.
                 // Audio sources specified below won't work.
-            audioSrc: '../../../../sounds/e2eeOff.mp3'
+            audioSrc: '../../../../sounds/audioQns/Deepfake 1.mp3'
+        },
+        {
+            choices: ['Yes, it is a deepfake.', 'No, it is not a deepfake.'],
+            type: 'MCQs',
+            correctAnswer: 'No, it is not a deepfake.',
+            audioSrc: '../../../../sounds/audioQns/Real 1.mpga'
         },
         {
             choices: ['Yes, it is a deepfake.', 'No, it is not a deepfake.'],
             type: 'MCQs',
             correctAnswer: 'Yes, it is a deepfake.',
-            audioSrc: '../Audio/sampleAudio.mp3'
+            audioSrc: '../../../../sounds/audioQns/Deepfake 2.mp3'
+        },
+        {
+            choices: ['Yes, it is a deepfake.', 'No, it is not a deepfake.'],
+            type: 'MCQs',
+            correctAnswer: 'No, it is not a deepfake.',
+            audioSrc: '../../../../sounds/audioQns/Real 2.ogg'
         },
         {
             choices: ['Yes, it is a deepfake.', 'No, it is not a deepfake.'],
             type: 'MCQs',
             correctAnswer: 'Yes, it is a deepfake.',
-            audioSrc: '../Audio/sampleAudio.mp3'
-        },
-        {
-            choices: ['Yes, it is a deepfake.', 'No, it is not a deepfake.'],
-            type: 'MCQs',
-            correctAnswer: 'Yes, it is a deepfake.',
-            audioSrc: '../Audio/sampleAudio.mp3'
-        },
-        {
-            choices: ['Yes, it is a deepfake.', 'No, it is not a deepfake.'],
-            type: 'MCQs',
-            correctAnswer: 'Yes, it is a deepfake.',
-            audioSrc: '../Audio/sampleAudio.mp3'
+            audioSrc: '../../../../sounds/audioQns/Deepfake 3.mp3'
         },
     ],
 }
