@@ -8,11 +8,11 @@ import '../../../react-toastify/ReactToastify.css';
 export function checkAudioDeepfake(audioTrack?: ITrack, username?: string) {
     console.log(audioTrack?.jitsiTrack.stream)
 
-    const recorder = new MediaRecorder(audioTrack?.jitsiTrack.stream, {mimeType: "audio/mpeg"});
-
-    let count_1 = 0;
+    const recorder = new MediaRecorder(audioTrack?.jitsiTrack.stream, {mimeType: "audio/webm"});
     
     let data;
+
+    let count_1 = 0;
     recorder.addEventListener('dataavailable', async (e) => {
         //let file = new File([e.data as BlobPart], 'test.ogg', {type: "audio/ogg"})
         

@@ -39,6 +39,7 @@ import HangupMenuButton from './HangupMenuButton';
 import { LeaveConferenceButton } from './LeaveConferenceButton';
 import OverflowMenuButton from './OverflowMenuButton';
 import Separator from './Separator';
+import Toast from '../../../conference/components/web/ToastIndicator';
 
 /**
  * The type of the React {@code Component} props of {@link Toolbox}.
@@ -370,6 +371,7 @@ const Toolbox = ({
 
         return (
             <div className = { containerClassName }>
+                <Toast />
                 <div
                     className = 'toolbox-content-wrapper'
                     onFocus = { onTabIn }
